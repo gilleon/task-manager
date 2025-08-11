@@ -44,4 +44,22 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const newTask = new Task(req.body);
+    const savedTask = await newTask.save();
+
+    res.status(201).json({
+      success: true,
+      data: savedTask
+    });
+  } catch (error) {
+    console.error('Error creating task:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error while creating task'
+    });
+  }
+});
+
 module.exports = router;
