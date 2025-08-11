@@ -62,4 +62,28 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+
+    if (!updatedTask) {
+      return res.status(404).json({
+        success: false,
+        message: 'Task not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: updatedTask
+    });
+  } catch (error) {
+    console.error('Error updating task:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error while updating task'
+    });
+  }
+});
+
 module.exports = router;
