@@ -3,6 +3,7 @@ import { useTaskFilter } from './hooks/useTaskFilter';
 import TaskList from './components/TaskList';
 import AddTaskForm from './components/AddTaskForm';
 import TaskFilter from './components/TaskFilter';
+import StatusBadge from './components/StatusBadge';
 
 const App = () => {
   const { 
@@ -52,6 +53,8 @@ const App = () => {
           onDeleteTask={deleteTask}
         />
       </main>
+      
+      <StatusBadge />
     </div>
   );
 };
