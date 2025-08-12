@@ -1,6 +1,8 @@
 import { useTasks } from './hooks/useTasks';
+import { useTaskFilter } from './hooks/useTaskFilter';
 import TaskList from './components/TaskList';
 import AddTaskForm from './components/AddTaskForm';
+import TaskFilter from './components/TaskFilter';
 
 const App = () => {
   const { 
@@ -11,6 +13,13 @@ const App = () => {
     toggleComplete, 
     deleteTask 
   } = useTasks();
+
+  const {
+    filter,
+    setFilter,
+    filteredTasks,
+    taskCounts,
+  } = useTaskFilter(tasks);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -29,8 +38,14 @@ const App = () => {
         
         <AddTaskForm onAddTask={addTask} />
         
+        <TaskFilter 
+          filter={filter}
+          onFilterChange={setFilter}
+          taskCounts={taskCounts}
+        />
+        
         <TaskList 
-          tasks={tasks} 
+          tasks={filteredTasks} 
           loading={loading} 
           error={error} 
           onToggleComplete={toggleComplete}
