@@ -2,6 +2,8 @@
 
 A full-stack task management app with React (TypeScript) frontend and Node.js backend.
 
+🌐 **Live Demo:** [https://task-manager-mocha-six.vercel.app/](https://task-manager-mocha-six.vercel.app/)
+
 ## Quick Start
 
 ### Prerequisites
