@@ -8,9 +8,3 @@ export interface Task {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface TaskResponse {
-  success: boolean;
-  count: number;
-  data: Task[];
-}
