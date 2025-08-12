@@ -49,7 +49,7 @@ task-manager/
    PORT=3000
    MONGODB_URI=mongodb://localhost:27017/taskmanager
    # For MongoDB Atlas:
-   # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/taskmanager
+   # MONGODB_URI=mongodb+srv://username:<db_password>@cluster.mongodb.net/taskmanager
    ```
 
 3. **Start services:**
