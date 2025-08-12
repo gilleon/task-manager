@@ -20,7 +20,7 @@ export const useConnectionStatus = () => {
   useEffect(() => {
     checkStatus();
     
-    const interval = setInterval(checkStatus, 10000);
+    const interval = setInterval(checkStatus, 30000);
     
     return () => clearInterval(interval);
   }, []);
