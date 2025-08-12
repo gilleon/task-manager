@@ -42,6 +42,24 @@ const App = () => {
     }
   };
 
+  const handleToggleComplete = async (id: string, completed: boolean) => {
+    try {
+      const response = await taskApi.updateTask(id, { completed });
+      if (response.success) {
+        setTasks(prevTasks => 
+          prevTasks.map(task => 
+            task._id === id ? { ...task, completed } : task
+          )
+        );
+      } else {
+        setError('Failed to update task');
+      }
+    } catch (err) {
+      console.error('Error updating task:', err);
+      setError('Unable to update task');
+    }
+  };
+
   useEffect(() => {
     loadTasks();
   }, []);
@@ -59,7 +77,7 @@ const App = () => {
         
         <AddTaskForm onAddTask={handleAddTask} />
         
-        <TaskList tasks={tasks} loading={loading} error={error} />
+        <TaskList tasks={tasks} loading={loading} error={error} onToggleComplete={handleToggleComplete}/>
       </main>
     </div>
   );
