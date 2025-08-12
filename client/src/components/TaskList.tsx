@@ -1,7 +1,17 @@
 import { Task } from '../types/Task';
 import TaskCard from './TaskCard';
 
-const TaskList = ({ tasks, loading, error }: { tasks: Task[]; loading: boolean; error: string | null }) => {
+const TaskList = ({ 
+  tasks, 
+  loading, 
+  error, 
+  onToggleComplete 
+}: { 
+  tasks: Task[]; 
+  loading: boolean; 
+  error: string | null;
+  onToggleComplete: (id: string, completed: boolean) => void;
+}) => {
   if (loading) {
     return <div className="flex justify-center items-center py-12 text-gray-500 text-lg">Loading tasks...</div>;
   }
@@ -17,7 +27,7 @@ const TaskList = ({ tasks, loading, error }: { tasks: Task[]; loading: boolean; 
   return (
     <div className="grid gap-4">
       {tasks.map((task) => (
-        <TaskCard key={task._id} task={task} />
+        <TaskCard key={task._id} task={task} onToggleComplete={onToggleComplete} />
       ))}
     </div>
   );
