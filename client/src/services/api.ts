@@ -20,6 +20,11 @@ export const taskApi = {
     const response = await api.post('/tasks', task);
     return response.data;
   },
+
+  updateTask: async (id: string, updates: Partial<Task>) => {
+    const response = await api.put(`/tasks/${id}`, updates);
+    return response.data;
+  },
 };
 
 export default api;
