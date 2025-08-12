@@ -13,7 +13,10 @@ const borderColors = {
   completed: 'border-l-green-500',
 };
 
-const TaskCard = ({ task }: { task: Task }) => {
+const TaskCard = ({ task, onToggleComplete }: { 
+  task: Task; 
+  onToggleComplete: (id: string, completed: boolean) => void;
+}) => {
   const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString();
 
   return (
@@ -21,8 +24,20 @@ const TaskCard = ({ task }: { task: Task }) => {
       bg-white rounded-lg p-6 shadow-md border-l-4 hover:shadow-lg transition-shadow duration-200
       ${task.completed ? `${borderColors.completed} opacity-70` : borderColors[task.priority]}
     `}>
-      <div className={`text-xl font-semibold text-gray-900 mb-2 ${task.completed ? 'line-through' : ''}`}>
-        {task.title}
+      <div className="flex items-start justify-between mb-2">
+        <div className={`text-xl font-semibold text-gray-900 flex-1 ${task.completed ? 'line-through' : ''}`}>
+          {task.title}
+        </div>
+        <button
+          onClick={() => onToggleComplete(task._id, !task.completed)}
+          className={`ml-4 px-3 py-1 rounded text-sm font-medium transition-colors ${
+            task.completed
+              ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              : 'bg-green-100 text-green-700 hover:bg-green-200'
+          }`}
+        >
+          {task.completed ? 'Mark Incomplete' : 'Mark Complete'}
+        </button>
       </div>
       
       <div className="text-gray-600 mb-4 leading-relaxed">
