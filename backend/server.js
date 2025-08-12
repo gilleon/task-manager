@@ -15,8 +15,15 @@ app.use(express.json());
 
 const taskRoutes = require('./routes/tasks');
 
-
 app.use('/tasks', taskRoutes);
+
+app.get("/health", (req, res) => {
+  res.json({
+    success: true,
+    status: "Server is running",
+    timestamp: new Date().toISOString(),
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
